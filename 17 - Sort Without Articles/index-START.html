@@ -63,6 +63,28 @@ for(let i = 0 ; i < bands.length ; i++){
   li.innerHTML = bands[i];
   ul.appendChild(li);
 }
+
+// Solution Coline/Arthur pour ne pas supprimer définitivement les articles de début. 
+// function strip(leGroupe) {
+//     return leGroupe.replace(/^(the |an |a )/i, "").trim();
+// }
+
+// const bandsSorted = bands.sort((a, b) => {
+//     if (strip(a) > strip(b)) {
+//         return 1;
+//     } else {
+//         return -1;
+//     }
+// })
+
+// var ul = document.getElementById('bands');
+
+// for (let i = 0; i < bandsSorted.length; i++) {
+//     let li = document.createElement('li');
+//     li.appendChild(document.createTextNode(bandsSorted[i]));
+//     ul.appendChild(li);
+// }
+
 </script>
 
 </body>

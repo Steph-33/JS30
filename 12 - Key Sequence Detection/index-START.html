@@ -7,6 +7,34 @@
 </head>
 <body>
 <script>
+  let password = "manonegra1988!";
+  let arrKeys = [];
+  document.addEventListener('keydown', (event) => {
+    let key = event.key;
+    if (event.keyCode !== 13){
+      arrKeys.push(key);
+      console.log(arrKeys);
+    }else{
+      let tentative = arrKeys.join('');
+      console.log(tentative);
+      if(tentative == password){
+        cornify_add(); 
+      }else{
+        alert('Le mot de passe n\'est pas bon');
+        arrKeys = [];
+      }  
+    }
+  });  
+
+  // autre solution, plus proche de l'esprit du Code Konami
+  // let password = 'manonegra1988!';
+  // let  arrKeys = [];
+  // document.addEventListener('keydown', (event) => {
+  //   arrKeys.push(event.key);
+  //   if(arrKeys.join('').includes(password)){
+  //     cornify_add()
+  //   }
+  // });
 </script>
 </body>
 </html>

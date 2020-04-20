@@ -60,14 +60,16 @@
 <script>
   document.addEventListener('keydown', (event) => {
     let play = event.keyCode;
+    // Méthode ES5
     document.querySelector('audio[data-key ="' + play + '"]').play();
+    // Méthode ES6
+    // document.querySelector(`audio[data-key = "${play}" ]`).play();
     document.querySelector('div[data-key ="' + play + '"]').classList.add('playing');
     document.addEventListener('transitionend', () => {
       document.querySelector('div[data-key ="' + play + '"]').classList.remove('playing');
     });
   });  
 </script>
-
 
 </body>
 </html>

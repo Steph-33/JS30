@@ -17,6 +17,27 @@
 
 
   <style>
+    :root {
+      --rotate-hour: ;
+      --rotate-min: ;
+      --rotate-sec: ;
+    }
+    .hour-hand{
+      background: green!important;
+      transform: rotate(var(--rotate-hour));
+      transform-origin: right center;
+    }
+    .min-hand{
+      background: red!important;
+      transform: rotate(var(--rotate-min));
+      transform-origin: right center;
+    }
+    .second-hand{
+      background: yellow!important;
+      transform: rotate(var(--rotate-sec));
+      transform-origin: right center;
+    }
+
     html {
       background: #018DED url(http://unsplash.it/1500/1000?image=881&blur=5);
       background-size: cover;
@@ -67,8 +88,15 @@
   </style>
 
   <script>
-
-
+    var arrows = document.getElementsByClassName('hand')
+    function clock(){
+      var date = new Date; // Utilisation de l'objet Date qui calcule le nombre de seconde écoulée depuis le 1er janvier 1970
+      arrows[0].style.setProperty('--rotate-hour', (date.getHours() / 12) * 360 + 90 + "deg")
+      arrows[1].style.setProperty('--rotate-min', (date.getMinutes() / 60) * 360 + 90 + "deg")
+      arrows[2].style.setProperty('--rotate-sec', (date.getSeconds() / 60) * 360 + 90 + "deg")
+    }
+    clock()
+    var interval = window.setInterval(clock, 1000);
   </script>
 </body>
 </html>

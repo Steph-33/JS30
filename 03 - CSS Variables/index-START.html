@@ -32,6 +32,10 @@
       filter: blur(var(--border-blur));
     }
 
+    .hl{
+      color : var(--border-color);
+    }
+
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -55,24 +59,27 @@
   </style>
 
   <script>
-    let image = document.getElementsByTagName('img');
+    let image = document.querySelector('img');
     let espacement = document.getElementById('spacing');
     let flou = document.getElementById('blur');
     let couleur = document.getElementById('base');
-    let js = document.getElementsByClassName('hl')
-    console.log(js);
+    let js = document.getElementsByClassName('hl') // autre possibilité : let js = document.querySelector('.hl')
+    let body = document.body;
 
-    espacement.addEventListener('mousemove', () => {
-      image[0].style.setProperty('--border-size',espacement.value + 'px');
+    espacement.addEventListener('input', () => {
+      body.style.setProperty('--border-size',espacement.value + 'px');
+      // image.style.setProperty('--border-size',espacement.value + 'px');
     });
 
-    couleur.addEventListener('mousemove', () => {
-      image[0].style.setProperty('--border-color',couleur.value);
-      js[0].style.setProperty('--border-color',js.value);
+    couleur.addEventListener('input', () => {
+      body.style.setProperty('--border-color',couleur.value);
+      // image.style.setProperty('--border-color',couleur.value);
+      // js.style.setProperty('--border-color',couleur.value);
     });
 
-    flou.addEventListener('mousemove', () => {
-      image[0].style.setProperty('--border-blur',flou.value + 'px');
+    flou.addEventListener('input', () => {
+      body.style.setProperty('--border-blur',flou.value + 'px');
+      // image.style.setProperty('--border-blur',flou.value + 'px');
     });
 
 
