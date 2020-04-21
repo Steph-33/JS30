@@ -96,6 +96,55 @@
   </div>
 
 <script>
+  const boxs = document.querySelectorAll('.inbox input[type="checkbox"]');
+  boxs.forEach(box => box.addEventListener('click',handleCheck));
+  
+  function handleCheck(){
+    for(let i = 0 ; i < boxs.length ; i++){
+      for(let j = 0 ; j < boxs.length ; j++){
+        if(boxs[i].className == 'input:checked + p' && boxs[j].className == 'input:checked + p'){
+          boxs = boxs.slice(i,j);
+
+          document.addEventListener('keydown', (event) => {
+            let key = event.shiftKey;
+            for(let k = 0 ; k < boxs.length ; k++){
+              if(key == true && k > i && k < j){
+              boxs[k].classList.add('input:checked + p');
+              console.log(key);
+              }
+            }
+          });
+        }
+      }
+    }    
+  }
+
+  // function handleCheck(){
+  //   for(let i = 0 ; i < boxs.length ; i++){
+  //     for(let j = 0 ; j < boxs.length ; j++){
+  //       if(boxs[i].className === 'input:checked + p' && boxs[j].className === 'input:checked + p'){
+  //         boxs = boxs.slice(i,j);
+
+  //         document.addEventListener('keydown', (event) => {
+  //           var key = event.keyCode;
+  //           for(let k = 0 ; k < boxs.length ; k++){
+  //             if(key == 16 && k > i && k < j){
+  //             boxs[k].classList.add('input:checked + p');
+  //             }
+  //           }
+  //         });
+  //       }
+  //     }
+  //   }    
+  // }
+
+
+  // ShiftKey
+  // This
+
+
+
+
 </script>
 </body>
 </html>

@@ -7,7 +7,7 @@
 </head>
 <body>
 <script>
-  let password = "manonegra1988!";
+  let password = "coucou";
   let arrKeys = [];
   document.addEventListener('keydown', (event) => {
     let key = event.key;
@@ -27,10 +27,12 @@
   });  
 
   // autre solution, plus proche de l'esprit du Code Konami
-  // let password = 'manonegra1988!';
+  // let password = 'Coucou';
   // let  arrKeys = [];
   // document.addEventListener('keydown', (event) => {
-  //   arrKeys.push(event.key);
+  //   let key = event.key;
+  //   arrKeys.push(key);
+  //   console.log(arrKeys);
   //   if(arrKeys.join('').includes(password)){
   //     cornify_add()
   //   }

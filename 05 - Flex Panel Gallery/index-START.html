@@ -26,6 +26,7 @@
     .panels {
       min-height: 100vh;
       overflow: hidden;
+      display: flex;
     }
 
     .panel {
@@ -43,6 +44,28 @@
       font-size: 20px;
       background-size: cover;
       background-position: center;
+      width: 100%;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    .panels .textup{
+      /* transform: translateY(-200px); */
+      transform : translateY(-200px);
+    }
+
+    .panels .textdown{
+      transform: translateY(200px);
+    }
+
+    .panels .dolittle{
+      flex: 0.5;
+    }
+
+    .panels .dobig{
+      flex: 3;
     }
 
     .panel1 { background-image:url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500); }
@@ -105,7 +128,45 @@
   </div>
 
   <script>
+    let p = document.getElementsByTagName('p');
+    let div = document.getElementsByClassName('panel');
+    
+    for (let i = 0; i < div.length; i++) {
+      div[i].addEventListener('click', () => { 
+      div[i].classList.toggle('dolittle');
+    })
+    }
 
+    for (let i = 0; i < div.length; i++) {
+      div[i].addEventListener('dblclick', () => { 
+      div[i].classList.toggle('dobig');
+    })
+    }
+    
+    div[0].addEventListener('click', () =>{
+    p[0].classList.toggle('textup');
+    p[2].classList.toggle('textdown');
+    });
+
+    div[1].addEventListener('click', () => {
+    p[3].classList.toggle('textup');
+    p[5].classList.toggle('textdown');
+    });
+
+    div[2].addEventListener('click', () => {
+    p[6].classList.toggle('textup');
+    p[8].classList.toggle('textdown');
+    });
+
+    div[3].addEventListener('click', () => {
+    p[9].classList.toggle('textup');
+    p[11].classList.toggle('textdown');
+    });
+
+    div[4].addEventListener('click', () => {
+    p[12].classList.toggle('textup');
+    p[14].classList.toggle('textdown');
+    });
   </script>
 
 
