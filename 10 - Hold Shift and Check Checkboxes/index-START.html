@@ -49,6 +49,7 @@
       font-weight: 200;
       border-left: 1px solid #D1E2FF;
     }
+
   </style>
    <!--
    The following is a common layout you would see in an email client.
@@ -98,53 +99,32 @@
 <script>
   const boxs = document.querySelectorAll('.inbox input[type="checkbox"]');
   boxs.forEach(box => box.addEventListener('click',handleCheck));
-  
-  function handleCheck(){
-    for(let i = 0 ; i < boxs.length ; i++){
-      for(let j = 0 ; j < boxs.length ; j++){
-        if(boxs[i].className == 'input:checked + p' && boxs[j].className == 'input:checked + p'){
-          boxs = boxs.slice(i,j);
+  let arr = Array.from(boxs)
+  let posA;
+  let posB;
+  let nbClick = 0;
 
-          document.addEventListener('keydown', (event) => {
-            let key = event.shiftKey;
-            for(let k = 0 ; k < boxs.length ; k++){
-              if(key == true && k > i && k < j){
-              boxs[k].classList.add('input:checked + p');
-              console.log(key);
-              }
-            }
-          });
+  function handleCheck(event) {
+    nbClick++;
+    if (nbClick == 1){
+      posA = arr.indexOf(this);
+    } else if ((nbClick == 2) && (event.shiftKey)){
+      posB = arr.indexOf(this);
+      if(posA < posB){
+        let middle = arr.slice(posA+1,posB);
+        for(let i = 0 ; i < middle.length ; i++){
+        console.log(middle[i]);
+        middle[i].checked = true;
+        }
+      }else{
+        let middle = arr.slice(posB+1,posA);
+        for(let i = 0 ; i < middle.length ; i++){
+        console.log(middle[i]);
+        middle[i].checked = true;
         }
       }
-    }    
+    }
   }
-
-  // function handleCheck(){
-  //   for(let i = 0 ; i < boxs.length ; i++){
-  //     for(let j = 0 ; j < boxs.length ; j++){
-  //       if(boxs[i].className === 'input:checked + p' && boxs[j].className === 'input:checked + p'){
-  //         boxs = boxs.slice(i,j);
-
-  //         document.addEventListener('keydown', (event) => {
-  //           var key = event.keyCode;
-  //           for(let k = 0 ; k < boxs.length ; k++){
-  //             if(key == 16 && k > i && k < j){
-  //             boxs[k].classList.add('input:checked + p');
-  //             }
-  //           }
-  //         });
-  //       }
-  //     }
-  //   }    
-  // }
-
-
-  // ShiftKey
-  // This
-
-
-
-
 </script>
 </body>
 </html>

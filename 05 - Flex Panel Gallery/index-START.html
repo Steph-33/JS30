@@ -52,7 +52,6 @@
     }
 
     .panels .textup{
-      /* transform: translateY(-200px); */
       transform : translateY(-200px);
     }
 
@@ -128,48 +127,23 @@
   </div>
 
   <script>
-    let p = document.getElementsByTagName('p');
+    
     let div = document.getElementsByClassName('panel');
     
     for (let i = 0; i < div.length; i++) {
+      let p = div[i].getElementsByTagName('p');
       div[i].addEventListener('click', () => { 
-      div[i].classList.toggle('dolittle');
-    })
+        div[i].classList.toggle('dolittle');
+        p[0].classList.toggle('textup');
+        p[2].classList.toggle('textdown');
+      });
     }
 
     for (let i = 0; i < div.length; i++) {
       div[i].addEventListener('dblclick', () => { 
       div[i].classList.toggle('dobig');
-    })
+      });
     }
-    
-    div[0].addEventListener('click', () =>{
-    p[0].classList.toggle('textup');
-    p[2].classList.toggle('textdown');
-    });
-
-    div[1].addEventListener('click', () => {
-    p[3].classList.toggle('textup');
-    p[5].classList.toggle('textdown');
-    });
-
-    div[2].addEventListener('click', () => {
-    p[6].classList.toggle('textup');
-    p[8].classList.toggle('textdown');
-    });
-
-    div[3].addEventListener('click', () => {
-    p[9].classList.toggle('textup');
-    p[11].classList.toggle('textdown');
-    });
-
-    div[4].addEventListener('click', () => {
-    p[12].classList.toggle('textup');
-    p[14].classList.toggle('textdown');
-    });
   </script>
-
-
-
 </body>
 </html>
