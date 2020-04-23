@@ -7,10 +7,15 @@
 <body>
 
   <div class="hero">
-    <h1 contenteditable>🔥WOAH!</h1>
+    <h1 contenteditable>🔥WOAH! &#x1F60E;</h1>
   </div>
 
   <style>
+  :root{
+    --text-shadowX : 10px;
+    --text-shadowY : 10px;
+  }
+
   html {
     color: black;
     font-family: sans-serif;
@@ -29,16 +34,26 @@
   }
 
   h1 {
-    text-shadow: 10px 10px 0 red;
+    text-shadow: var(--text-shadowX) var(--text-shadowY) red;
     font-size: 100px;
   }
   </style>
 
 <script>
-  // let p = document.getElementsByTagName('h1')[0];
-  // let move = p.addEventListener('mousemove', => (){
-  //   p.style.textShadow = 
-  // });
+  let p = document.getElementsByTagName('h1')[0];
+  let body = document.body;
+  console.log(p);
+  let move = body.addEventListener('mousemove', (event) => {
+    let x = event.clientX;
+    let y = event.clientY;
+    // p.style.setProperty('--text-shadowX', (x-200) + 'px');
+    // p.style.setProperty('--text-shadowY', (y-300) + 'px');
+    p.style.textShadow = `${(x-200)*(-0.5)}px ${y-300}px 0px #E91421,
+                        ${x-200}px ${(y-300)*(-0.7)}px 0px #1441E9,
+                        ${(x-200)*(-1)}px ${(y-300)*(-1.5)}px 0px #4EC413`;
+    console.log(x,y);
+    
+  });
 </script>
 </body>
 </html>
