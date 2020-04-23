@@ -35,6 +35,44 @@
   </div>
 
 <script>
+  let items = document.querySelector('.items');
+  let item = document.querySelectorAll('.item');
+  let itemArray = Array.from(item);
+  let body = document.body;
+  let xArray = [];
+  
+  for(let i = 0 ; i < itemArray.length ; i++){
+    let select = itemArray[i].addEventListener('mousedown', () => {
+      items.classList.add('active');
+      console.log(itemArray[i]);
+
+      let scroll = body.addEventListener('mousemove', (event) => {
+        let x = event.clientX;
+        console.log(event);
+        console.log(x);
+        xArray.push(x);
+        console.log(typeof x);
+        // console.log(xArray);
+        for(let j = 0 ; j < xArray.length ; j++){
+          if(xArray[j] < xArray[j+1]){
+            // console.log('scroll droit');
+          }else if(xArray[j] = xArray[j+1]){
+            // console.log('immobile');
+          }else{
+            // console.log('scroll gauche');
+          }
+        }
+      });
+    });
+
+    let unSelect = itemArray[i].addEventListener('mouseup', () => {
+        items.classList.remove('active');
+      });
+  }
+   
+  
+  
+  
 </script>
 
   </body>

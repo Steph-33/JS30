@@ -106,21 +106,24 @@
 
   function handleCheck(event) {
     nbClick++;
-    if (nbClick == 1){
+    if (nbClick === 1){
       posA = arr.indexOf(this);
-    } else if ((nbClick == 2) && (event.shiftKey)){
+    } else if (nbClick === 2){
       posB = arr.indexOf(this);
-      if(posA < posB){
-        let middle = arr.slice(posA+1,posB);
-        for(let i = 0 ; i < middle.length ; i++){
-        console.log(middle[i]);
-        middle[i].checked = true;
-        }
-      }else{
-        let middle = arr.slice(posB+1,posA);
-        for(let i = 0 ; i < middle.length ; i++){
-        console.log(middle[i]);
-        middle[i].checked = true;
+      nbClick = 0;
+      if(event.shiftKey && this.checked){
+        if(posA < posB){
+          let middle = arr.slice(posA+1,posB);
+          for(let i = 0 ; i < middle.length ; i++){
+            console.log(middle[i]);
+            middle[i].checked = true;
+          }
+        }else{
+          let middle = arr.slice(posB+1,posA);
+          for(let i = 0 ; i < middle.length ; i++){
+            console.log(middle[i]);
+            middle[i].checked = true;
+          }
         }
       }
     }
