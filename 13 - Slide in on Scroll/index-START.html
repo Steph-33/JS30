@@ -58,6 +58,20 @@
       };
     }
 
+    let images = document.getElementsByTagName('img');
+    let imagesArray = Array.from(images);
+
+    document.addEventListener('scroll', debounce(scrollImage));
+    function scrollImage(){
+      imagesArray.forEach(element => {
+        let topImage = element.offsetTop - (window.innerHeight/2);        
+        if(window.scrollY >= topImage){
+          element.classList.add('active');
+        }else{
+          element.classList.remove('active');
+        }
+      });
+    }
   </script>
 
   <style>
@@ -118,6 +132,5 @@
     }
 
   </style>
-
-</body>
+  </body>
 </html>

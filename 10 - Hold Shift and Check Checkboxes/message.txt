@@ -1,0 +1,56 @@
+// on déclare une const qui va recuperer par query selector tous les input checkbox
+// EN plus de ça on transforme la nodeList que va donner le querySelector en array par Array.from
+const boxs = Array.from(document.querySelectorAll('.inbox input[type = "checkbox"]'));
+
+// declaration de trois variables, la position A, B et le nombre de clique partant de 0
+let posA;
+let posB;
+let nbClick = 0;
+
+//on declare la fonction handleCheck
+function handleCheck(event){
+// on déclare que le nbClick va s'incrémenter de 1 à chaque clique 
+  nbClick++;
+// Si on clique 1 fois, posA va prendre la valeur de la box cliqué (grâce à indexOf)
+//ex : si on clique sur la box num.2, il renvoie 2
+//this renverra toujours à "box" (voir ligne 169)
+  if (nbClick == 1){
+    posA = boxs.indexOf(this)
+// également si on clique une deuxième fois, posB va prendre la valeur de la deuxième box cliqué
+  } else if (nbClick == 2){
+    posB = boxs.indexOf(this)
+// on reinitialise nbClick à zéro pour pouvoir le réutiliser
+    nbClick = 0;
+  } 
+// maintenant si on clique sur shift ET qu'on clique sur une box
+  if (event.shiftKey && this.checked){
+// si la valeur de la position A (le premier clic) est < à posB
+  if(posA < posB){
+// alors on récupère par slice les valeurs, sous forme d'array, des checkbox pas cochés qui se trouvent entre les deux chexkboxes cliqués
+// on met +1 à posA parce que slice va de base garder la valeur de posA et exclure par contre posB
+// Mais comme on ne veut pas de posA, vu qu'on cherche juste a avoir les valeurs au milieu, on fait +1
+    let gap = boxs.slice(posA +1, posB);
+//boucle for qui dit que sur toutes les valeurs de gap, donc toutes les checkboxes pas cochés du milieu...
+      for( i=0; i< gap.length; i++ ){
+//...on va .checked, donc cocher ces checkboxes du milieu, en passant la valeur à true.
+// initialement le .checked est à false, donc pas coché
+        gap[i].checked= true;
+      }
+// Sinon si la premiere valeur (posA) est plus grand que posB (en gros si on vaut faire ça à l'envers)
+  } else { 
+    if( posA > posB){
+// on fait exactement la même chose qu'a l'endroit, mais là c'est posB qui va être déclaré d'abord
+// donc naturellement slice va vouloir inclure la valeur de posB, mais on ne le veut pas donc +1
+// et ensuite vient posA qui est naturellement exclue
+      let gap = boxs.slice(posB +1, posA);
+        for( i=0; i< gap.length; i++ ){
+          gap[i].checked= true;
+        }
+      }
+    }
+  }
+}
+// ForEach() est une méthode qui permet d'executer une fonction donnée sur chaque élement du tableau
+// donc ça se traduit ici par :  forEach, pour chaque element de boxs (en gros ses enfants qui sont les inputs, mais ici qu'on appele box)
+// à chacun de ces box on vient appliquer un gestionnaire d'evenement au click
+boxs.forEach( box => box.addEventListener('click',handleCheck));

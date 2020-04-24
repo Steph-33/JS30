@@ -53,11 +53,12 @@
           xArray.push(x);
           for(let j = 1 ; j < xArray.length ; j++){
             if(xArray[j] < xArray[j-1]){
-              items.style.transform = "translateX(50px)";
+              items.style.transform = "translateX(" + (-200) + "px) scaleX(" + 1.31 + ") rotateY(" + 40 + "deg)";
+
             }else if(xArray[j] === xArray[j-1]){
               items.style.transform = "translateX(0px)";
             }else{
-              items.style.transform = "translateX(-50px)";
+              items.style.transform = "translateX(" + (200) + "px) scaleX(" + 1.31 + ") rotateY(" + (-40) + "deg)";
             }
           }
           
