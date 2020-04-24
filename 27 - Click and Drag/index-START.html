@@ -35,47 +35,118 @@
   </div>
 
 <script>
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  // Solution finale
+  ///////////////////////////////////////////////////////////////////////////////////////////
   let items = document.querySelector('.items');
   let item = document.querySelectorAll('.item');
-  let itemArray = Array.from(item);
-  let body = document.body;
-  let xArray = [];
   let isScrolling = false;
   
-  for(let i = 0 ; i < itemArray.length ; i++){
-    let select = itemArray[i].addEventListener('mousedown', (event) => {
-      items.classList.add('active');
-      isScrolling = true;
+  let select = items.addEventListener('mousedown', (event) => {
+    items.classList.add('active');
+    isScrolling = true;
+    let startX = event.clientX
+    let sLeft = items.scrollLeft;
     
-      let scroll = body.addEventListener('mousemove', (event) => {
-        let x = event.clientX;
-        if(isScrolling === true){
-          xArray.push(x);
-          for(let j = 1 ; j < xArray.length ; j++){
-            if(xArray[j] < xArray[j-1]){
-              items.style.transform = "translateX(" + (-200) + "px) scaleX(" + 1.31 + ") rotateY(" + 40 + "deg)";
-
-            }else if(xArray[j] === xArray[j-1]){
-              items.style.transform = "translateX(0px)";
-            }else{
-              items.style.transform = "translateX(" + (200) + "px) scaleX(" + 1.31 + ") rotateY(" + (-40) + "deg)";
-            }
-          }
-          
-        }  
-      });
-    });
-    let unSelect = itemArray[i].addEventListener('mouseup', () => {
-      items.classList.remove('active');
+    let scroll = items.addEventListener('mousemove', (event) => {
+      let x = event.clientX;
       if(isScrolling === true){
-        isScrolling = false;
-      }  
+        let walk = (x - startX)*3;
+        items.scrollLeft = sLeft - walk;
+      }        
     });
-  }  
-   
+  });  
   
-  
-  
+  let unSelect = items.addEventListener('mouseup', () => {
+    items.classList.remove('active');
+    if(isScrolling === true){
+      isScrolling = false;
+    }  
+  });
+    
+  /////////////////////////////////////////////////////////////////////////////////////////// 
+
+
+
+
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  // Idée Steph de départ
+  ///////////////////////////////////////////////////////////////////////////////////////////  
+  // let items = document.querySelector('.items');
+  // let item = document.querySelectorAll('.item');
+  // let itemArray = Array.from(item);
+  // let body = document.body;
+  // let xArray = [];
+  // let isScrolling = false;
+  //
+  // for(let i = 0 ; i < itemArray.length ; i++){
+  //   let select = itemArray[i].addEventListener('mousedown', (event) => {
+  //     items.classList.add('active');
+  //     isScrolling = true;
+  //  
+  //     let scroll = body.addEventListener('mousemove', (event) => {
+  //       let x = event.clientX;
+  //       if(isScrolling === true){
+  //         xArray.push(x);
+  //         for(let j = 1 ; j < xArray.length ; j++){
+  //           if(xArray[j] < xArray[j-1]){
+  //             console.log('scroll gauche');
+  //
+  //           else if(xArray[j] === xArray[j-1]){
+  //             console.log('immobile');
+  //
+  //           }else{
+  //             console.log('scroll droit');
+  //           }
+  //         }        
+  //       }  
+  //     });
+  //   });
+  //   let unSelect = itemArray[i].addEventListener('mouseup', () => {
+  //     items.classList.remove('active');
+  //     if(isScrolling === true){
+  //       isScrolling = false;
+  //       xArray = [];
+  //     }  
+  //   });
+  // }  
+  ///////////////////////////////////////////////////////////////////////////////////////////
+
+
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  // Solution trouvée sur Youtube
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  // const slider = document.querySelector('.items');
+  // let isDown = false;
+  // let startX;
+  // let sLeft;
+  //
+  // slider.addEventListener('mousedown', (event) => {
+  //   isDown = true;
+  //   slider.classList.add('active');
+  //   startX = event.pageX - slider.offsetLeft;
+  //   sLeft = slider.scrollLeft;
+  // });
+  //
+  // slider.addEventListener('mouseleave', () => {
+  //   isDown = false;
+  //   slider.classList.remove('active');
+  // });
+  //
+  // slider.addEventListener('mouseup', () => {
+  //   isDown = false;
+  //   slider.classList.remove('active');
+  // });
+  //
+  // slider.addEventListener('mousemove', (event) => {
+  //   if(!isDown) return;
+  //   // event.preventDefault;
+  //   const x = event.pageX - slider.offsetLeft;
+  //   const walk = (x - startX)*3;
+  //   slider.scrollLeft = sLeft - walk;
+  // });  
+  ///////////////////////////////////////////////////////////////////////////////////////////
+
 </script>
 
   </body>
