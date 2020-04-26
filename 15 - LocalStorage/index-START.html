@@ -20,7 +20,7 @@
       <li>Loading Tapas...</li>
     </ul>
     <form class="add-items">
-      <input type="text" name="item" placeholder="Item Name" required>
+      <input id="myInput" type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
   </div>
@@ -28,7 +28,68 @@
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
+  const myInput = document.getElementById('myInput');
   const items = [];
+
+  addItems.addEventListener('submit', () => {
+    // event.preventDefault();
+    let plate = myInput.value;
+    let plateObj = {isDone : true , 'plat' : plate};
+    let jsonPlateObj = JSON.stringify(plateObj);
+    items.push(jsonPlateObj);
+
+    for (let i = 0 ; i < items.length ; i++){
+      var jsItems = JSON.parse(items);
+      localStorage.setItem(`Plat ${i}`, jsItems.plat);  
+    }   
+  });
+
+  console.log(localStorage);
+  localStorage.removeItem('ingrédients');
+  // localStorage.removeItem('Plats');
+  
+  for(let i = 0 ; i < localStorage.length ; i++){
+    let key = localStorage.key(i);
+    let plateObj = localStorage.getItem(key);
+    let li = document.createElement('li');
+    li.innerHTML = `${plateObj}`;
+    itemsList.appendChild(li); 
+  }
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Solution Lysa
+/////////////////////////////////////////////////////////////////////////////////////////
+
+  // const addItems = document.querySelector('.add-items')
+  // const itemsList = document.querySelector('.plates')
+  // renderIngredient = (ingredient, i) => {
+  //   console.log(ingredient)
+  //   itemsList.innerHTML += `<div>
+  //     <input id='ingredient${i}' type="checkbox">
+  //     <label data-i=${i} for='ingredient${i}' ></label>
+  //     <li> ${ingredient.name}</li>
+  //   </div>`
+  // }
+  // let histories = JSON.parse(localStorage.getItem('ingrédients')) || [];
+  // histories.forEach((ingredient, i) => {
+  //   renderIngredient(ingredient, i)
+  // })
+
+  // addItems.addEventListener('submit', function(e) {
+  //   e.preventDefault();
+  //   let newIngredient = {
+  //     isDone:true,
+  //     name: this.firstElementChild.value
+  //   }
+  //   renderIngredient(newIngredient, localStorage.length + 1)
+  //   histories.push(newIngredient)
+  //   this.firstElementChild.value = '';
+  //   localStorage.setItem('ingrédients', JSON.stringify(histories))
+  // })
+
+
+
+
 
 </script>
 
